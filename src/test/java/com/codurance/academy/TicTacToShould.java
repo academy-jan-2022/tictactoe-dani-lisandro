@@ -12,9 +12,10 @@ class TicTacToShould {
 
         String result = game.play(new Point(0, 0));
 
-        assertEquals("X|_|_\n" +
-            "_|_|_\n"+
-            "_|_|_", result);
+        assertEquals("""
+            X|_|_
+            _|_|_
+            _|_|_""", result);
     }
 
     @Test
@@ -24,9 +25,10 @@ class TicTacToShould {
 
         String result = game.play(new Point(0, 2));
 
-        assertEquals("_|_|_\n" +
-            "_|_|_\n"+
-            "X|_|_", result);
+        assertEquals("""
+            _|_|_
+            _|_|_
+            X|_|_""", result);
     }
 
 
@@ -37,21 +39,23 @@ class TicTacToShould {
 
         String result = game.play(new Point(1, 1));
 
-        assertEquals("_|_|_\n" +
-            "_|X|_\n"+
-            "_|_|_", result);
+        assertEquals("""
+            _|_|_
+            _|X|_
+            _|_|_""", result);
     }
 
     @Test
     void
-    mark_O_in_the_top_right_cell(){
+    mark_O_in_the_center_right_cell(){
         var game = new TicTacToe();
 
         game.play(new Point(1, 1));
         String result = game.play(new Point(2, 0));
 
-        assertEquals("_|_|O\n" +
-            "_|X|_\n"+
-            "_|_|_", result);
+        assertEquals("""
+            _|_|_
+            _|X|O
+            _|_|_""", result);
     }
 }
