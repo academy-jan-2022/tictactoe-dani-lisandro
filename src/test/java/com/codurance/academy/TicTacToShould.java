@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TicTacToShould {
     @Test public void
-    place_X_first(){
+    mark_X_in_the_top_left_cell(){
         var game = new TicTacToe();
 
         String result = game.play(0, 0);
