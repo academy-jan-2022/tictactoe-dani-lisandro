@@ -15,4 +15,15 @@ public class TicTacToShould {
             "_|_|_"+
             "_|_|_", result);
     }
+
+    @Test public void
+    mark_X_in_the_center_cell(){
+        var game = new TicTacToe();
+
+        String result = game.play(0, 2);
+
+        assertEquals("_|_|_" +
+            "_|X|_"+
+            "_|_|_", result);
+    }
 }
