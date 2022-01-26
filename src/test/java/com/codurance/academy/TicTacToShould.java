@@ -4,23 +4,38 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TicTacToShould {
-    @Test public void
+class TicTacToShould {
+    @Test
+    void
     mark_X_in_the_top_left_cell(){
         var game = new TicTacToe();
 
-        String result = game.play(0, 0);
+        String result = game.play(new Point(0, 0));
 
         assertEquals("X|_|_" +
             "_|_|_"+
             "_|_|_", result);
     }
 
-    @Test public void
+    @Test
+    void
+    mark_X_in_the_bottom_left_cell(){
+        var game = new TicTacToe();
+
+        String result = game.play(new Point(0, 2));
+
+        assertEquals("_|_|_" +
+            "_|_|_"+
+            "X|_|_", result);
+    }
+
+
+    @Test
+    void
     mark_X_in_the_center_cell(){
         var game = new TicTacToe();
 
-        String result = game.play(0, 2);
+        String result = game.play(new Point(1, 1));
 
         assertEquals("_|_|_" +
             "_|X|_"+
