@@ -50,12 +50,12 @@ class TicTacToShould {
     mark_O_in_the_center_right_cell(){
         var game = new TicTacToe();
 
-        game.play(new Point(1, 1));
-        String result = game.play(new Point(2, 0));
+        game.play(new Point(0, 1));
+        String result = game.play(new Point(2, 1));
 
         assertEquals("""
             _|_|_
-            _|X|O
+            X|_|O
             _|_|_""", result);
     }
 }
