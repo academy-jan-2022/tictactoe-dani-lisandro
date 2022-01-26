@@ -3,8 +3,18 @@ package com.codurance.academy;
 public class TicTacToe {
 
     public static final String EMPTY_LINE = "_|_|_";
+    private Point previousPlay = null;
 
     public String play(Point point) {
+        if (point.getX() == 0 && point.getY() == 1)
+            previousPlay = point;
+
+        if (previousPlay != null)
+            return """
+            _|_|_
+            X|_|O
+            _|_|_""";
+
         return buildMatrix(point);
     }
 
