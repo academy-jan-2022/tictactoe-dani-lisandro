@@ -5,13 +5,13 @@ public class TicTacToe {
         StringBuilder line = buildLine(point);
 
         if(point.getX() == 1){
-            return "_|_|_\n" + line + "_|_|_";
+            return "_|_|_\n" + line + "\n_|_|_";
         }
 
         if (point.getY() == 2) {
-            return "_|_|_\n" + "_|_|_\n" + "X|_|_";
+            return "_|_|_\n" + "_|_|_\n" + line;
         }
-        return "X|_|_\n" + "_|_|_\n" + "_|_|_";
+        return line + "\n_|_|_\n" + "_|_|_";
     }
 
     private StringBuilder buildLine(Point point) {
@@ -21,7 +21,6 @@ public class TicTacToe {
             line.append(getCellMarker(point, xIndex));
             line.append(getSeparator(xIndex));
         }
-        line.append("\n");
 
         return line;
     }
