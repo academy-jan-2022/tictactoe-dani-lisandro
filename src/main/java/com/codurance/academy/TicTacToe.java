@@ -14,14 +14,15 @@ public class TicTacToe {
                 line.append("|");
             }
         }
+        line.append("\n");
 
         if(point.getX() == 1){
-            return "_|_|_" + line + "_|_|_";
+            return "_|_|_\n" + line + "_|_|_";
         }
 
         if (point.getY() == 2) {
-            return "_|_|_" + "_|_|_" + "X|_|_";
+            return "_|_|_\n" + "_|_|_\n" + "X|_|_";
         }
-        return "X|_|_" + "_|_|_" + "_|_|_";
+        return "X|_|_\n" + "_|_|_\n" + "_|_|_";
     }
 }
