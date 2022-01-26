@@ -58,4 +58,18 @@ class TicTacToShould {
             X|_|O
             _|_|_""", result);
     }
+
+    @Test
+    void
+    mark_O_in_the_center_cell(){
+        var game = new TicTacToe();
+
+        game.play(new Point(0, 1));
+        String result = game.play(new Point(1, 1));
+
+        assertEquals("""
+            _|_|_
+            X|O|_
+            _|_|_""", result);
+    }
 }
