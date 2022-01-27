@@ -8,13 +8,13 @@ public class TicTacToe {
 
     public static final String EMPTY_LINE = "_|_|_";
     public static final String SEPARATOR = "\n";
-    private List<Point> plays = new ArrayList();
+    private final List<Point> plays = new ArrayList<>();
+    private boolean isX = false;
 
     public String play(Point currentPlay) {
         plays.add(currentPlay);
 
         String playLine = buildLine();
-
 
         return playLine + SEPARATOR + EMPTY_LINE + SEPARATOR + EMPTY_LINE;
     }
@@ -41,10 +41,16 @@ public class TicTacToe {
 
     private String getCharacter(Point xIndex, String currentChar, int i) {
         if(isSamePoint(plays.get(i), xIndex)){
-            return i % 2 == 0 ? "X" : "O";
+            return getCurrent();
         }
 
         return currentChar;
+    }
+
+    private String getCurrent() {
+        String result = isX ? "X" : "O";
+        isX = !isX;
+        return result;
     }
 
     private boolean isSamePoint(Point previousPlay, Point xIndex) {
