@@ -32,15 +32,16 @@ public class TicTacToe {
 
     private String getCurrentChar (Point xIndex) {
         String currentChar = "_";
-        for (int i=0; i< plays.size(); i++){
-            currentChar = getCharacter(xIndex, currentChar, i);
+
+        for(Point point : plays){
+            currentChar = getCharacter(xIndex, currentChar, point);
         }
 
         return currentChar;
     }
 
-    private String getCharacter(Point xIndex, String currentChar, int i) {
-        if(isSamePoint(plays.get(i), xIndex)){
+    private String getCharacter(Point xIndex, String currentChar, Point i) {
+        if(isSamePoint(i, xIndex)){
             return getCurrent();
         }
 
