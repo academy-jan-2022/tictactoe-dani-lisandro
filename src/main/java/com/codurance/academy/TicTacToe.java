@@ -12,11 +12,11 @@ public class TicTacToe {
 
     public static final String EMPTY_LINE = "_|_|_";
     public static final String SEPARATOR = "\n";
-    private final List<Move> playerMoves2 = new ArrayList<>();
+    private final MovesList playerMoves = new MovesList();
     private boolean isX = true;
 
     public String play(Point currentPlay) {
-        playerMoves2.add(new Move(currentPlay,getPlayerToken()));
+        playerMoves.add(new Move(currentPlay,getPlayerToken()));
 
         String playLine = buildLine();
 
@@ -35,7 +35,7 @@ public class TicTacToe {
     }
 
     private String getCurrentCellContent(Point cellPosition) {
-        Optional<Move> move = playerMove(cellPosition);
+        Optional<Move> move = playerMoves.playerMove(cellPosition);
         if (move.isPresent()) {
             return move.get().token();
         }
@@ -43,20 +43,10 @@ public class TicTacToe {
         return EMPTY.token;
     }
 
-
-    private Optional<Move> playerMove(Point cellPosition) {
-        return playerMoves2.stream()
-            .filter(playerMove -> isSamePoint(playerMove.point(), cellPosition))            .findFirst();
-    }
-
     private String getPlayerToken() {
         String result = isX ? PLAYER_A.token : PLAYER_B.token;
         isX = !isX;
         return result;
-    }
-
-    private boolean isSamePoint(Point previousPlay, Point xIndex) {
-        return Objects.equals(previousPlay, xIndex);
     }
 
     private String getSeparator(int xIndex) {
