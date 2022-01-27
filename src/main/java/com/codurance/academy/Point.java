@@ -32,4 +32,12 @@ public class Point {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
+    public Point moveRight() {
+        return new Point(x+1, y);
+    }
+
+    public Point moveDown() {
+        return new Point(0, y+1);
+    }
 }
