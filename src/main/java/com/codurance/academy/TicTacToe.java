@@ -10,8 +10,6 @@ import static com.codurance.academy.Cell.*;
 
 public class TicTacToe {
 
-    private record Move(Point point, String token){};
-
     public static final String EMPTY_LINE = "_|_|_";
     public static final String SEPARATOR = "\n";
     private final List<Move> playerMoves2 = new ArrayList<>();
@@ -39,7 +37,7 @@ public class TicTacToe {
     private String getCurrentCellContent(Point cellPosition) {
         Optional<Move> move = playerMove(cellPosition);
         if (move.isPresent()) {
-            return move.get().token;
+            return move.get().token();
         }
 
         return EMPTY.token;
@@ -48,8 +46,7 @@ public class TicTacToe {
 
     private Optional<Move> playerMove(Point cellPosition) {
         return playerMoves2.stream()
-            .filter(playerMove -> isSamePoint(playerMove.point, cellPosition))
-            .findFirst();
+            .filter(playerMove -> isSamePoint(playerMove.point(), cellPosition))            .findFirst();
     }
 
     private String getPlayerToken() {
