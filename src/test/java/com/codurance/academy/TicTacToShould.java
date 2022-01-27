@@ -157,12 +157,13 @@ class TicTacToShould {
 
     @Test
     void
-    not_allow_to_keep_playing_after_row_win() {
+    not_allow_to_keep_playing_after_top_row_win() {
         game.play(new Point(0,0));
         game.play(new Point(0,1));
         game.play(new Point(1,0));
         game.play(new Point(0,2));
-        var result = game.play(new Point(2,0));
+        game.play(new Point(2,0));
+        var result = game.play(new Point(1,2));
 
         assertEquals("""
             X|X|X

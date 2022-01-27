@@ -13,6 +13,10 @@ public class TicTacToe {
     private Token currentPlayer = PLAYER_A;
 
     public String play(Point currentPlay) {
+        if(playerMoves.winner()){
+          return renderMatrix();
+        }
+
         playerMoves.add(new Move(currentPlay, currentPlayer.token));
         currentPlayer = getNextPlayer();
 
