@@ -5,21 +5,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.codurance.academy.TicTacToe.Cell.*;
+import static com.codurance.academy.Cell.*;
 
 
 public class TicTacToe {
-
-    public enum Cell {
-        PLAYER_A("X"), PLAYER_B("O"), EMPTY("_");
-
-        private final String token;
-
-        Cell(String token) {
-
-            this.token = token;
-        }
-    }
 
     public static final String EMPTY_LINE = "_|_|_";
     public static final String SEPARATOR = "\n";
@@ -28,7 +17,6 @@ public class TicTacToe {
 
     public String play(Point currentPlay) {
         playerMoves.add(currentPlay);
-
         String playLine = buildLine();
 
         return playLine + SEPARATOR + EMPTY_LINE + SEPARATOR + EMPTY_LINE;
