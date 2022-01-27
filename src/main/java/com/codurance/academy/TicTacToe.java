@@ -34,10 +34,10 @@ public class TicTacToe {
         if (isEndOfLine(point) && !isEndOfMatrix(point))
             matrix.append(END_OF_LINE);
 
-        if (point.getX() < END_OF_MATRIX)
+        if (point.isAtEndOfXAxis(END_OF_MATRIX))
             return renderMatrixRecursive(point.moveRight(), matrix);
 
-        if (point.getY() < END_OF_MATRIX)
+        if (point.isAtEndOfYAxis(END_OF_MATRIX))
             return renderMatrixRecursive(point.moveDown(), matrix);
 
         return matrix.toString();

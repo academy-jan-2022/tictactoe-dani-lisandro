@@ -40,4 +40,12 @@ public class Point {
     public Point moveDown() {
         return new Point(0, y+1);
     }
+
+    public boolean isAtEndOfXAxis(int endOfMatrix) {
+        return x < endOfMatrix;
+    }
+
+    public boolean isAtEndOfYAxis(int endOfMatrix) {
+        return y < endOfMatrix;
+    }
 }
