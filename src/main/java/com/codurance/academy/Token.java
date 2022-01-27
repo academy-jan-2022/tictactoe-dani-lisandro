@@ -1,11 +1,11 @@
 package com.codurance.academy;
 
-public enum Cell {
+public enum Token {
     PLAYER_A("X"), PLAYER_B("O"), EMPTY("_");
 
     public final String token;
 
-    Cell(String token) {
+    Token(String token) {
 
         this.token = token;
     }

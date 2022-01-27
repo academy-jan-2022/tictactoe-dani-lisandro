@@ -1,11 +1,8 @@
 package com.codurance.academy;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-import static com.codurance.academy.Cell.*;
+import static com.codurance.academy.Token.*;
 
 
 public class TicTacToe {
@@ -13,14 +10,19 @@ public class TicTacToe {
     public static final String EMPTY_LINE = "_|_|_";
     public static final String SEPARATOR = "\n";
     private final MovesList playerMoves = new MovesList();
-    private boolean isX = true;
+    private Token currentPlayer = PLAYER_A;
 
     public String play(Point currentPlay) {
-        playerMoves.add(new Move(currentPlay,getPlayerToken()));
+        playerMoves.add(new Move(currentPlay,currentPlayer.token));
+        currentPlayer = getNextPlayer();
 
         String playLine = buildLine();
 
         return playLine + SEPARATOR + EMPTY_LINE + SEPARATOR + EMPTY_LINE;
+    }
+
+    private Token getNextPlayer() {
+        return currentPlayer == PLAYER_A ? PLAYER_B : PLAYER_A;
     }
 
     private String buildLine() {
@@ -41,12 +43,6 @@ public class TicTacToe {
         }
 
         return EMPTY.token;
-    }
-
-    private String getPlayerToken() {
-        String result = isX ? PLAYER_A.token : PLAYER_B.token;
-        isX = !isX;
-        return result;
     }
 
     private String getSeparator(int xIndex) {
