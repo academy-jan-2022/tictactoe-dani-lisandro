@@ -1,6 +1,7 @@
 package com.codurance.academy;
 
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import static com.codurance.academy.Token.*;
 
@@ -34,8 +35,6 @@ public class TicTacToe {
             if(yIndex < 2)
                 matrix.append(END_OF_LINE);
         }
-
-
 
         return matrix.toString();
     }
