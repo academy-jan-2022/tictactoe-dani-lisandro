@@ -23,32 +23,32 @@ public class TicTacToe {
         StringBuilder line = new StringBuilder();
 
         for (int xIndex = 0; xIndex < 3; xIndex++) {
-            line.append(getCurrentChar(new Point(xIndex, 0)));
+            line.append(getCurrentCellContent(new Point(xIndex, 0)));
             line.append(getSeparator(xIndex));
         }
 
         return line.toString();
     }
 
-    private String getCurrentChar (Point xIndex) {
+    private String getCurrentCellContent(Point xIndex) {
         String currentChar = "_";
 
         for(Point point : plays){
-            currentChar = getCharacter(xIndex, currentChar, point);
+            currentChar = getCellContent(xIndex, currentChar, point);
         }
 
         return currentChar;
     }
 
-    private String getCharacter(Point xIndex, String currentChar, Point i) {
+    private String getCellContent(Point xIndex, String currentChar, Point i) {
         if(isSamePoint(i, xIndex)){
-            return getCurrent();
+            return getPlayer();
         }
 
         return currentChar;
     }
 
-    private String getCurrent() {
+    private String getPlayer() {
         String result = isX ? "X" : "O";
         isX = !isX;
         return result;
