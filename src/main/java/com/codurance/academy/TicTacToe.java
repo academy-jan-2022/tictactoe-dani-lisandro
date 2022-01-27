@@ -6,40 +6,39 @@ public class TicTacToe {
 
     public static final String EMPTY_LINE = "_|_|_";
     public static final String SEPARATOR = "\n";
-    private Plays plays = new Plays();
-
+    private Point previousPlay = null;
 
     public String play(Point currentPlay) {
-        plays = plays.updateCurrent(currentPlay);
-
-        String playLine = buildLine();
-
-        plays = plays.updatePrevious(currentPlay);
+        String playLine = buildLine(currentPlay, previousPlay);
+        previousPlay = currentPlay;
 
         return playLine + SEPARATOR + EMPTY_LINE + SEPARATOR + EMPTY_LINE;
     }
 
-    private String buildLine() {
+    private String buildLine(Point currentPlay, Point previousPlay) {
         StringBuilder line = new StringBuilder();
 
         for (int xIndex = 0; xIndex < 3; xIndex++) {
-            line.append(getCurrentChar(xIndex));
+            line.append(getCurrentChar(currentPlay, previousPlay, xIndex));
             line.append(getSeparator(xIndex));
         }
 
         return line.toString();
     }
 
-
-    private String getCurrentChar(int xIndex) {
-        if (plays.isPreviousSamePoint(new Point(xIndex,0))) {
+    private String getCurrentChar(Point currentPlay, Point previousPlay, int xIndex) {
+        if (isSamePoint(previousPlay, xIndex)) {
             return "X";
         }
-        if (plays.isCurrentSamePoint(new Point(xIndex,0))) {
-            return plays.hasPreviousPlay() ? "O" : "X";
+        if (isSamePoint(currentPlay, xIndex)) {
+            return previousPlay == null ? "X" : "O";
         }
 
         return "_";
+    }
+
+    private boolean isSamePoint(Point previousPlay, int xIndex) {
+        return Objects.equals(previousPlay, new Point(xIndex, 0));
     }
 
     private String getSeparator(int xIndex) {
