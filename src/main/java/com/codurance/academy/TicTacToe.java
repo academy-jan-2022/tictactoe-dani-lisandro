@@ -16,20 +16,20 @@ public class TicTacToe {
         playerMoves.add(new Move(currentPlay,currentPlayer.token));
         currentPlayer = getNextPlayer();
 
-        String playLine = buildLine();
 
-        return playLine + SEPARATOR + EMPTY_LINE + SEPARATOR + EMPTY_LINE;
+
+        return buildLine(0) + SEPARATOR + buildLine(1) + SEPARATOR + EMPTY_LINE;
     }
 
     private Token getNextPlayer() {
         return currentPlayer == PLAYER_A ? PLAYER_B : PLAYER_A;
     }
 
-    private String buildLine() {
+    private String buildLine(int yIndex) {
         StringBuilder line = new StringBuilder();
 
         for (int xIndex = 0; xIndex < 3; xIndex++) {
-            line.append(getCurrentCellContent(new Point(xIndex, 0)));
+            line.append(getCurrentCellContent(new Point(xIndex, yIndex)));
             line.append(getSeparator(xIndex));
         }
 
