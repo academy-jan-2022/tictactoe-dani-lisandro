@@ -46,16 +46,17 @@ public class TicTacToe {
     }
 
     private String getCurrentCellContent(Point cellPosition) {
-
-        Optional<Point> playerMoveFound = playerMoves.stream()
-            .filter(playerMove -> isSamePoint(playerMove, cellPosition))
-            .findFirst();
-
-        if (playerMoveFound.isPresent()) {
+        if (playerMove(cellPosition).isPresent()) {
             return getPlayerToken();
         }
 
         return EMPTY.token;
+    }
+
+    private Optional<Point> playerMove(Point cellPosition) {
+        return playerMoves.stream()
+            .filter(playerMove -> isSamePoint(playerMove, cellPosition))
+            .findFirst();
     }
 
     private String getPlayerToken() {
