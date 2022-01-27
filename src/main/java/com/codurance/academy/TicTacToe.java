@@ -3,6 +3,7 @@ package com.codurance.academy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import static com.codurance.academy.TicTacToe.Cell.*;
 
@@ -45,10 +46,13 @@ public class TicTacToe {
     }
 
     private String getCurrentCellContent(Point cellPosition) {
-        for (Point playerMove : playerMoves) {
-            if (isSamePoint(playerMove, cellPosition)) {
-                return getPlayerToken();
-            }
+
+        Optional<Point> playerMoveFound = playerMoves.stream()
+            .filter(playerMove -> isSamePoint(playerMove, cellPosition))
+            .findFirst();
+
+        if (playerMoveFound.isPresent()) {
+            return getPlayerToken();
         }
 
         return EMPTY.token;
