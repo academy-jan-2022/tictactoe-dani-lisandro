@@ -1,20 +1,19 @@
 package com.codurance.academy;
 
 import java.util.Optional;
-import java.util.stream.IntStream;
 
 import static com.codurance.academy.Token.*;
 
 
 public class TicTacToe {
 
-    public static final String EMPTY_LINE = "_|_|_";
     public static final String END_OF_LINE = "\n";
+    public static final int END_OF_MATRIX = 2;
     private final MovesList playerMoves = new MovesList();
     private Token currentPlayer = PLAYER_A;
 
     public String play(Point currentPlay) {
-        playerMoves.add(new Move(currentPlay,currentPlayer.token));
+        playerMoves.add(new Move(currentPlay, currentPlayer.token));
         currentPlayer = getNextPlayer();
 
         return renderMatrix();
@@ -25,18 +24,31 @@ public class TicTacToe {
     }
 
     private String renderMatrix() {
-        StringBuilder matrix = new StringBuilder();
+        return renderMatrixRecursive(new Point(0, 0), new StringBuilder());
+    }
 
-        for(int yIndex = 0; yIndex < 3; yIndex++){
-            for (int xIndex = 0; xIndex < 3; xIndex++) {
-                matrix.append(getCurrentCellContent(new Point(xIndex, yIndex)));
-                matrix.append(getSeparator(xIndex));
-            }
-            if(yIndex < 2)
-                matrix.append(END_OF_LINE);
-        }
+    private String renderMatrixRecursive(Point point, StringBuilder matrix) {
+        matrix.append(getCurrentCellContent(point));
+        matrix.append(getSeparator(point.getX()));
+
+        if (isEndOfLine(point) && !isEndOfMatrix(point))
+            matrix.append(END_OF_LINE);
+
+        if (point.getX() < END_OF_MATRIX)
+            return renderMatrixRecursive(new Point(point.getX() + 1, point.getY()), matrix);
+
+        if (point.getY() < END_OF_MATRIX)
+            return renderMatrixRecursive(new Point(0, point.getY() + 1), matrix);
 
         return matrix.toString();
+    }
+
+    private boolean isEndOfMatrix(Point point) {
+        return point.getY() == END_OF_MATRIX;
+    }
+
+    private boolean isEndOfLine(Point point) {
+        return point.getX() == END_OF_MATRIX;
     }
 
     private String getCurrentCellContent(Point cellPosition) {
@@ -49,6 +61,6 @@ public class TicTacToe {
     }
 
     private String getSeparator(int xIndex) {
-        return xIndex < 2 ? "|" : "";
+        return xIndex < END_OF_MATRIX ? "|" : "";
     }
 }
