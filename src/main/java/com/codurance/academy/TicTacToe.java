@@ -8,7 +8,7 @@ import static com.codurance.academy.Token.*;
 public class TicTacToe {
 
     public static final String EMPTY_LINE = "_|_|_";
-    public static final String SEPARATOR = "\n";
+    public static final String END_OF_LINE = "\n";
     private final MovesList playerMoves = new MovesList();
     private Token currentPlayer = PLAYER_A;
 
@@ -16,24 +16,28 @@ public class TicTacToe {
         playerMoves.add(new Move(currentPlay,currentPlayer.token));
         currentPlayer = getNextPlayer();
 
-
-
-        return buildLine(0) + SEPARATOR + buildLine(1) + SEPARATOR + EMPTY_LINE;
+        return renderMatrix();
     }
 
     private Token getNextPlayer() {
         return currentPlayer == PLAYER_A ? PLAYER_B : PLAYER_A;
     }
 
-    private String buildLine(int yIndex) {
-        StringBuilder line = new StringBuilder();
+    private String renderMatrix() {
+        StringBuilder matrix = new StringBuilder();
 
-        for (int xIndex = 0; xIndex < 3; xIndex++) {
-            line.append(getCurrentCellContent(new Point(xIndex, yIndex)));
-            line.append(getSeparator(xIndex));
+        for(int yIndex = 0; yIndex < 3; yIndex++){
+            for (int xIndex = 0; xIndex < 3; xIndex++) {
+                matrix.append(getCurrentCellContent(new Point(xIndex, yIndex)));
+                matrix.append(getSeparator(xIndex));
+            }
+            if(yIndex < 2)
+                matrix.append(END_OF_LINE);
         }
 
-        return line.toString();
+
+
+        return matrix.toString();
     }
 
     private String getCurrentCellContent(Point cellPosition) {
