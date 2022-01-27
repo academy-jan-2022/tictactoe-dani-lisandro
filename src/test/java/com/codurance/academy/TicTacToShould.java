@@ -32,7 +32,6 @@ class TicTacToShould {
             _|_|_""", result);
     }
 
-
     @Test
     void
     mark_X_in_the_center_cell(){
@@ -61,17 +60,16 @@ class TicTacToShould {
     }
 
     @Test
-    @Disabled
     void
     mark_O_in_the_center_cell(){
         var game = new TicTacToe();
 
-        game.play(new Point(0, 1));
-        String result = game.play(new Point(1, 1));
+        game.play(new Point(0, 0));
+        String result = game.play(new Point(1, 0));
 
         assertEquals("""
-            _|_|_
             X|O|_
+            _|_|_
             _|_|_""", result);
     }
 }
