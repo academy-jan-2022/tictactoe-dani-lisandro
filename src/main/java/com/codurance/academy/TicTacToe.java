@@ -22,14 +22,14 @@ public class TicTacToe {
         StringBuilder line = new StringBuilder();
 
         for (int xIndex = 0; xIndex < 3; xIndex++) {
-            line.append(getCurrentChar(currentPlay, xIndex));
+            line.append(getCurrentChar(currentPlay, new Point(xIndex, 0)));
             line.append(getSeparator(xIndex));
         }
 
         return line.toString();
     }
 
-    private String getCurrentChar(Point currentPlay, int xIndex) {
+    private String getCurrentChar(Point currentPlay, Point xIndex) {
         if (isSamePoint(previousPreviousPlay, xIndex)) {
             return "X";
         }
@@ -48,8 +48,8 @@ public class TicTacToe {
         return "_";
     }
 
-    private boolean isSamePoint(Point previousPlay, int xIndex) {
-        return Objects.equals(previousPlay, new Point(xIndex, 0));
+    private boolean isSamePoint(Point previousPlay, Point xIndex) {
+        return Objects.equals(previousPlay, xIndex);
     }
 
     private String getSeparator(int xIndex) {
