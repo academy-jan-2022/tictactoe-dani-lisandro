@@ -72,19 +72,4 @@ class TicTacToShould {
             _|_|_
             _|_|_""", result);
     }
-
-    @Test
-    void
-    mark_all_top_cells(){
-        var game = new TicTacToe();
-
-        game.play(new Point(0, 0));
-        game.play(new Point(1, 0));
-        String result = game.play(new Point(2, 0));
-
-        assertEquals("""
-            X|O|X
-            _|_|_
-            _|_|_""", result);
-    }
 }
