@@ -153,33 +153,4 @@ class TicTacToShould {
             X|O|X
             O|X|O""", result);
     }
-
-    @Test
-    void
-    not_allow_to_play_on_a_taken_cell() {
-        game.play(new Point(0,2));
-        game.play(new Point(0,1));
-        game.play(new Point(1,0));
-        var result = game.play(new Point(0,2));
-
-        assertEquals("""
-            _|X|_
-            O|_|_
-            X|_|_""", result);
-    }
-
-    @Test
-    void
-    not_allow_to_keep_playing_after_win() {
-        game.play(new Point(0,2));
-        game.play(new Point(1,0));
-        game.play(new Point(0,1));
-        game.play(new Point(1,0));
-        var result = game.play(new Point(0,0));
-
-        assertEquals("""
-            X|O|O
-            X|_|_
-            X|_|_""", result);
-    }
 }
