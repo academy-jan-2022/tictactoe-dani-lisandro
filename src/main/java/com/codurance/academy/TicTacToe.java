@@ -31,13 +31,20 @@ public class TicTacToe {
     }
 
     private String getCurrentChar (Point xIndex) {
+        String currentChar = "_";
         for (int i=0; i< plays.size(); i++){
-            if(isSamePoint(plays.get(i), xIndex)){
-                return i % 2 == 0 ? "X" : "O";
-            }
+            currentChar = getCharacter(xIndex, currentChar, i);
         }
 
-        return "_";
+        return currentChar;
+    }
+
+    private String getCharacter(Point xIndex, String currentChar, int i) {
+        if(isSamePoint(plays.get(i), xIndex)){
+            return i % 2 == 0 ? "X" : "O";
+        }
+
+        return currentChar;
     }
 
     private boolean isSamePoint(Point previousPlay, Point xIndex) {
