@@ -1,18 +1,19 @@
 package com.codurance.academy;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class TicTacToe {
 
     public static final String EMPTY_LINE = "_|_|_";
     public static final String SEPARATOR = "\n";
-    private Point previousPlay = null;
-    private Point previousPreviousPlay = null;
+    private List<Point> plays = new ArrayList();
 
     public String play(Point currentPlay) {
+        plays.add(currentPlay);
+
         String playLine = buildLine(currentPlay);
-        previousPreviousPlay = previousPlay;
-        previousPlay = currentPlay;
 
 
         return playLine + SEPARATOR + EMPTY_LINE + SEPARATOR + EMPTY_LINE;
@@ -30,7 +31,14 @@ public class TicTacToe {
     }
 
     private String getCurrentChar(Point currentPlay, Point xIndex) {
-        if (isSamePoint(previousPreviousPlay, xIndex)) {
+        for (int i=0; i< plays.size(); i++){
+            if(isSamePoint(plays.get(i), xIndex)){
+                return i % 2 == 0 ? "X" : "O";
+            }
+
+        }
+
+       /* if (isSamePoint(previousPreviousPlay, xIndex)) {
             return "X";
         }
 
@@ -43,7 +51,7 @@ public class TicTacToe {
                 return "X";
             }
             return previousPlay == null ? "X" : "O";
-        }
+        }*/
 
         return "_";
     }
