@@ -4,15 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static com.codurance.academy.TicTacToe.Cell.*;
+
+
 public class TicTacToe {
+
+    public enum Cell {
+        PLAYER_A("X"), PLAYER_B("O"), EMPTY("_");
+
+        private final String token;
+
+        Cell(String token) {
+
+            this.token = token;
+        }
+    }
 
     public static final String EMPTY_LINE = "_|_|_";
     public static final String SEPARATOR = "\n";
-    private final List<Point> plays = new ArrayList<>();
+    private final List<Point> playerMoves = new ArrayList<>();
     private boolean isX = false;
 
     public String play(Point currentPlay) {
-        plays.add(currentPlay);
+        playerMoves.add(currentPlay);
 
         String playLine = buildLine();
 
@@ -30,26 +44,18 @@ public class TicTacToe {
         return line.toString();
     }
 
-    private String getCurrentCellContent(Point xIndex) {
-        String currentChar = "_";
-
-        for(Point point : plays){
-            currentChar = getCellContent(xIndex, currentChar, point);
+    private String getCurrentCellContent(Point cellPosition) {
+        for (Point playerMove : playerMoves) {
+            if (isSamePoint(playerMove, cellPosition)) {
+                return getPlayerToken();
+            }
         }
 
-        return currentChar;
+        return EMPTY.token;
     }
 
-    private String getCellContent(Point xIndex, String currentChar, Point i) {
-        if(isSamePoint(i, xIndex)){
-            return getPlayer();
-        }
-
-        return currentChar;
-    }
-
-    private String getPlayer() {
-        String result = isX ? "X" : "O";
+    private String getPlayerToken() {
+        String result = isX ? PLAYER_A.token : PLAYER_B.token;
         isX = !isX;
         return result;
     }
